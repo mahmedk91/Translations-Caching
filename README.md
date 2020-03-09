@@ -6,7 +6,7 @@ A Django app for translation API with pluggable translation engine and caching m
 
 ### Cache
 
-Django app already comes up with alot of plugins including cache. Since we want to be flexible, we have django cache wrapped in a service. The service always require a backend to work which must be injected when the app starts.
+Django app already comes up with alot of plugins - including cache. Since we want to be flexible, we have wrapped django cache in a service. The service always require a backend to work which must be injected when the app starts.
 
 We have made our django cache permanently persistant. However, this can be changed by changing the `TIMEOUT` value in django settings.
 
@@ -20,17 +20,17 @@ Translation service (just like cache) requires a backend. One can easily write a
 
 ### Pre-caching
 
-Pre-caching needs to be asynchronous to keep the translation API fast. We needed a message broker and a service to publish-subscribe messages. We use Celery with RabbitMQ broker. Celery has inbuild support for Django.
+Pre-caching needs to be asynchronous to keep the translation API fast. We needed a message broker and a service to publish-subscribe messages. We use Celery with RabbitMQ broker. Celery has inbuild support for Django and comes preconfigured with 4 workers.
 
 ### Stats middleware
 
-We needed to measure improvement in the response time when the translation is cached. Thankfully, with Django we can write custom middleware to do something before and after the response. We wrote a stats middleware which logs the time elapsed for processing the request. It makes it easy to measure request time and see the advantage to caching and pre-caching.
+We needed to measure improvement in the response time when the translation is cached. Thankfully, with Django we can write custom middleware to do something before and after the response. We wrote a stats middleware which logs the time elapsed for processing the request. It makes it easy to measure request time and see the advantage to caching and pre-caching in our architecture.
 
 ## Setup
 
 ### Tools needed
 
-- pip
+- Python3 and pip
 - virtualenv running Python3
 - running RabbitMQ server - https://www.rabbitmq.com/download.html
 
